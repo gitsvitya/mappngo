@@ -1,0 +1,134 @@
+/* Semantic parity aliases: fixed navbar logo */
+.site-navbar__logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.site-navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  transition: all 0.35s;
+  opacity: 0;
+  transform: translateY(-63px);
+  background: rgba(0, 0, 0, 0.9);
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.site-navbar--scrolled {
+  transform: none;
+  opacity: 1;
+}
+
+.site-navbar--faq {
+  background-color: #fb942a !important;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.home-page {
+  padding-bottom: 3rem;
+}
+
+.hero-section__container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.feature-carousel-section__container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.home-faq-panel,
+.site-footer {
+  background-color: #fb942a !important;
+}
+
+.home-faq-panel__container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .hero-section__container {
+    max-width: 540px;
+  }
+
+  .feature-carousel-section__container {
+    max-width: 540px;
+  }
+
+  .home-faq-panel__container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-section__container {
+    max-width: 720px;
+  }
+
+  .feature-carousel-section__container {
+    max-width: 720px;
+  }
+
+  .home-faq-panel__container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-section__container {
+    max-width: 960px;
+  }
+
+  .feature-carousel-section__container {
+    max-width: 960px;
+  }
+
+  .home-faq-panel__container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-section__container {
+    max-width: 1000px;
+  }
+
+  .feature-carousel-section__container {
+    max-width: 1000px;
+  }
+
+  .home-faq-panel__container {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  section.home-faq-panel {
+    margin-top: -5rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  section.home-faq-panel .home-faq-panel__container {
+    max-width: 100%;
+  }
+}
+

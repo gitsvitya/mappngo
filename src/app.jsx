@@ -36,48 +36,48 @@ function HomePage({ locale, scrolled, content }) {
   const { home } = content
 
   return (
-    <main className="pb-5" id="top">
-      <div className={`navbar navbar-scrolling start fixed-top${scrolled ? ' scroll' : ''}`}>
-        <ScrollTopLogo src="/assets/images/logo.svg" className="img-fluid mx-auto d-block logo" />
+    <main className="home-page" id="top">
+      <div className={`site-navbar${scrolled ? ' site-navbar--scrolled' : ''}`}>
+        <ScrollTopLogo src="/assets/images/logo.svg" className="site-navbar__logo" />
       </div>
 
-      <section className="container first-section hero-section overflow-hidden">
+      <section className="hero-section__container hero-section">
         <img
           src="/assets/images/logo.svg"
           alt="MappnGo"
-          className="logo hero-section__logo hero-section__logo--mobile"
+          className="hero-section__logo hero-section__logo--mobile"
         />
-        <div className="align-items-lg-center flex-nowrap justify-content-between no-gutters row position-relative hero-section__layout">
-          <div className="col-lg-7 col-sm-6 hero-section__content">
+        <div className="hero-section__layout">
+          <div className="hero-section__content">
             <img
               src="/assets/images/logo.svg"
               alt="MappnGo"
-              className="logo hero-section__logo hero-section__logo--desktop"
+              className="hero-section__logo hero-section__logo--desktop"
             />
             <h1 className="hero-section__headline">{home.title}</h1>
 
             <div className="hero-section__copy">
-              <p className="font-weight-medium hero-section__subtitle">{home.subtitle}</p>
-              <p className="font-weight-medium hero-section__locale-link">
+              <p className="hero-section__subtitle">{home.subtitle}</p>
+              <p className="hero-section__locale-link">
                 <a href={home.switchHref} hrefLang={locale === 'ru' ? 'en' : 'ru'}>
                   {home.switchLabel}
                 </a>
               </p>
             </div>
           </div>
-          <div className="hero-image col-7 col-lg-6 hero-section__media">
+          <div className="hero-section__media">
             <img src="/assets/images/hero.png" alt="App preview" className="hero-section__image" />
           </div>
         </div>
       </section>
 
-      <section className="bg-primary faq">
-        <div className="container">
+      <section className="home-faq-panel">
+        <div className="home-faq-panel__container">
           <HomeFaqPreview sections={home.introFaq} faqHref={home.faqHref} cta={home.faqCta} />
         </div>
       </section>
 
-      <section className="top-section container feature-carousel-section">
+      <section className="feature-carousel-section__container feature-carousel-section">
         <Carousel
           slides={home.slides}
           labels={
@@ -88,8 +88,8 @@ function HomePage({ locale, scrolled, content }) {
         />
       </section>
 
-      <section className="bg-primary site-footer" id="social" aria-label="Social media">
-        <div className="container site-footer__icons">
+      <section className="site-footer" id="social" aria-label="Social media">
+        <div className="site-footer__container site-footer__icons">
           <img src="/assets/images/icons/vk.svg" className="site-footer__icon" alt="VK" />
           <img src="/assets/images/icons/instagram.svg" className="site-footer__icon" alt="Instagram" />
           <img src="/assets/images/icons/fb.svg" className="site-footer__icon" alt="Facebook" />
@@ -130,7 +130,7 @@ function Carousel({ slides, labels }) {
   return (
     <div
       id="appCarousel"
-      className="carousel slide feature-carousel"
+      className="feature-carousel"
       aria-roledescription="carousel"
       aria-label={labels.carousel}
       onKeyDown={(event) => {
@@ -139,10 +139,10 @@ function Carousel({ slides, labels }) {
       }}
       tabIndex={0}
     >
-      <div className="carousel-inner feature-carousel__track" aria-live="polite">
+      <div className="feature-carousel__track" aria-live="polite">
         {orderedSlides.map((slide, slideIndex) => (
           <div
-            className={`carousel-item feature-carousel__item${slideIndex === 0 ? ' active' : ''}`}
+            className={`feature-carousel__item${slideIndex === 0 ? ' active' : ''}`}
             key={`${slide.title}-${slideIndex}`}
             aria-hidden={slideIndex === 0 ? 'false' : 'true'}
           >
@@ -150,7 +150,7 @@ function Carousel({ slides, labels }) {
               <img src={slide.image} className="feature-carousel__image" alt={slide.title} />
               <h4 className="feature-carousel__title">{slide.title}</h4>
               <p className="feature-carousel__text">{slide.text}</p>
-              <span className="sr-only">{`${labels.slide} ${((index + slideIndex) % slides.length) + 1} of ${slides.length}`}</span>
+              <span className="visually-hidden">{`${labels.slide} ${((index + slideIndex) % slides.length) + 1} of ${slides.length}`}</span>
             </div>
           </div>
         ))}
@@ -158,21 +158,21 @@ function Carousel({ slides, labels }) {
 
       <button
         type="button"
-        className="carousel-control-prev feature-carousel__control feature-carousel__control--prev"
+        className="feature-carousel__control feature-carousel__control--prev"
         aria-label={labels.prev}
         onClick={prev}
       >
         <img src="/assets/images/icons/arrowL.svg" aria-hidden="true" alt="" />
-        <span className="sr-only">Previous</span>
+        <span className="visually-hidden">Previous</span>
       </button>
       <button
         type="button"
-        className="carousel-control-next feature-carousel__control feature-carousel__control--next"
+        className="feature-carousel__control feature-carousel__control--next"
         aria-label={labels.next}
         onClick={next}
       >
         <img src="/assets/images/icons/arrowR.svg" aria-hidden="true" alt="" />
-        <span className="sr-only">Next</span>
+        <span className="visually-hidden">Next</span>
       </button>
     </div>
   )
@@ -183,21 +183,21 @@ function FaqPage({ scrolled, content }) {
 
   return (
     <>
-      <div className={`navbar navbar-scrolling start bg-primary fixed-top shadow-sm${scrolled ? ' scroll' : ''}`}>
-        <ScrollTopLogo src="/assets/images/logo_on_white.svg" className="img-fluid mx-auto d-block logo" />
+      <div className={`site-navbar site-navbar--faq${scrolled ? ' site-navbar--scrolled' : ''}`}>
+        <ScrollTopLogo src="/assets/images/logo_on_white.svg" className="site-navbar__logo" />
       </div>
 
-      <section className="container faq-page__content" id="top">
+      <section className="faq-page__container faq-page__content" id="top">
         <div className="faq-page__header">
           <a href={faq.homeHref} className="faq-page__home-link">
-            <img src="/assets/images/logo_on_white.svg" alt="MappnGo" className="logo faq-page__logo" />
+            <img src="/assets/images/logo_on_white.svg" alt="MappnGo" className="faq-page__logo" />
           </a>
           <h3 className="faq-page__title">&nbsp;· FAQ</h3>
         </div>
 
         <FaqSections sections={faq.sections} />
       </section>
-      <section className="container faq-page__spacer" />
+      <section className="faq-page__container faq-page__spacer" />
     </>
   )
 }
