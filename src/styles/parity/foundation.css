@@ -1,3 +1,4 @@
+/* Parity layer: base accessibility + generic semantic hooks */
 .carousel-control-prev,
 .carousel-control-next,
 .feature-carousel__control {
@@ -196,4 +197,3 @@ a:focus-visible,
   color: #fff;
   font-weight: 700;
 }
-

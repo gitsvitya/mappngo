@@ -1,3 +1,4 @@
+/* Parity layer: carousel (bootstrap + project-specific multi-item behavior) */
 /* Semantic parity aliases: carousel controls */
 .feature-carousel__control {
   position: absolute;
@@ -182,4 +183,3 @@
     visibility: visible;
   }
 }
-

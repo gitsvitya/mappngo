@@ -1,3 +1,4 @@
+/* Parity layer: hero/first-section (formerly first-section + hero-image rules) */
 /* Hero semantic classes intentionally have no layout rules yet.
    Legacy first-section/grid classes remain source of truth to preserve 1:1 mobile layout. */
 .hero-section__logo {
