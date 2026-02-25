@@ -23,6 +23,6 @@ npm run preview
 ```
 
 Notes:
-- Visual parity is preserved by keeping the legacy base/grid rules in `src/styles/legacy-base.css` and `src/styles/legacy-grid.css` plus a semantic parity layer in `src/styles/parity/*.css` (imported via `src/styles/a11y.css`) with preserved rule order.
+- Visual parity is preserved by keeping the legacy base rules in `src/styles/legacy-base.css` plus a semantic parity layer in `src/styles/parity/*.css` (imported via `src/styles/a11y.css`) with preserved rule order.
 - `src/styles/a11y.css` contains only small non-visual/accessibility enhancements.
 - Static assets (images, favicon, fonts) are served from `public/assets`.
