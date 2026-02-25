@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './app.jsx'
-import './styles/a11y.css'
+import './styles/parity.css'
 
 const rootEl = document.getElementById('root')
 const locale = rootEl?.dataset.locale === 'en' ? 'en' : 'ru'

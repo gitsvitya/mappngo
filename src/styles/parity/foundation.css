@@ -1,4 +1,4 @@
-/* Parity layer: base accessibility + generic semantic hooks */
+/* Parity layer: base reset, typography, and accessibility helpers */
 *,
 *::before,
 *::after {
@@ -53,13 +53,11 @@ body {
   outline: 0 !important;
 }
 
-.carousel-control-prev,
-.carousel-control-next,
 .feature-carousel__control {
   cursor: pointer;
 }
 
-/* Bootstrap typography scale parity (legacy-grid.css) used by h1-h4 on the site */
+/* Typography scale used by site headings */
 h1,
 h2,
 h3,
@@ -163,44 +161,22 @@ textarea {
   border: 0;
 }
 
-.carousel-control-prev:focus-visible,
-.carousel-control-next:focus-visible,
 .feature-carousel__control:focus-visible,
 a:focus-visible,
-.carousel:focus-visible,
 .feature-carousel:focus-visible {
   outline: 2px solid #fb942a;
   outline-offset: 4px;
 }
 
-.carousel[aria-roledescription='carousel'] .carousel-item[aria-hidden='true'],
 .feature-carousel[aria-roledescription='carousel'] .feature-carousel__item[aria-hidden='true'] {
   pointer-events: none;
 }
 
-/* Semantic migration hooks (no visual changes yet) */
-.hero-section,
-.feature-carousel-section,
-.site-footer,
-.faq-preview,
-.faq-page__content,
-.faq-content__section {
-  /* Intentionally empty: class hooks for gradual migration away from utility classes. */
-}
-
-/* Semantic parity aliases: footer/social block */
+/* Footer / social */
 .site-footer__icons {
   display: flex;
   justify-content: center;
   gap: 1.5rem; /* Matches legacy mx-4/mr-4 spacing pattern used for icons */
-}
-
-.site-footer__container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .site-footer__icon {
@@ -208,31 +184,7 @@ a:focus-visible,
   height: auto;
 }
 
-@media (min-width: 576px) {
-  .site-footer__container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .site-footer__container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .site-footer__container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .site-footer__container {
-    max-width: 1000px;
-  }
-}
-
-/* Semantic parity aliases: first-section / hero */
+/* Hero primitives */
 .hero-section__logo,
 .hero-section__image {
   max-width: 100%;
@@ -249,13 +201,6 @@ a:focus-visible,
   display: none;
 }
 
-.hero-section__headline,
-.hero-section__subtitle,
-.hero-section__locale-link {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 @media (min-width: 992px) {
   .hero-section__logo--mobile {
     display: none;
@@ -270,17 +215,9 @@ a:focus-visible,
   }
 }
 
-/* Semantic parity aliases: FAQ page header/content */
+/* FAQ page */
 .faq-page__content {
   padding-bottom: 0;
-}
-
-.faq-page__container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .faq-page__header {
@@ -307,31 +244,7 @@ a:focus-visible,
   margin-bottom: 0;
 }
 
-@media (min-width: 576px) {
-  .faq-page__container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .faq-page__container {
-    max-width: 720px;
-  }
-}
-
-@media (min-width: 992px) {
-  .faq-page__container {
-    max-width: 960px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .faq-page__container {
-    max-width: 1000px;
-  }
-}
-
-/* Semantic parity aliases: home FAQ preview */
+/* Home FAQ preview */
 .faq-preview__title--lead {
   width: 100%;
   max-width: 58.33333%;

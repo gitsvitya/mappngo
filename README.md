@@ -23,6 +23,6 @@ npm run preview
 ```
 
 Notes:
-- Visual parity is preserved by a semantic parity layer in `src/styles/parity/*.css` (imported via `src/styles/a11y.css`) with preserved rule order while the legacy styles are being retired.
-- `src/styles/a11y.css` contains only small non-visual/accessibility enhancements.
+- Visual parity is preserved by a semantic parity layer in `src/styles/parity/*.css` (imported via `src/styles/parity.css`) with preserved rule order.
+- `src/styles/parity.css` is the parity manifest that imports the block-level parity styles from `src/styles/parity/`.
 - Static assets (images, favicon, fonts) are served from `public/assets`.

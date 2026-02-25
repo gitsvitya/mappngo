@@ -8,7 +8,7 @@ body.faq-page {
   background-color: #fb942a;
 }
 
-/* Semantic parity aliases: fixed navbar logo */
+/* Navbar */
 .site-navbar__logo {
   display: block;
   max-width: 100%;
@@ -45,28 +45,18 @@ body.faq-page {
   padding-bottom: 3rem;
 }
 
-.hero-section__container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.feature-carousel-section__container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
+/* Page surfaces */
 .home-faq-panel,
 .site-footer {
   background-color: #fb942a !important;
 }
 
-.home-faq-panel__container {
+/* Shared fixed-width containers */
+.site-footer__container,
+.hero-section__container,
+.feature-carousel-section__container,
+.home-faq-panel__container,
+.faq-page__container {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -75,29 +65,21 @@ body.faq-page {
 }
 
 @media (min-width: 576px) {
-  .hero-section__container {
-    max-width: 540px;
-  }
-
-  .feature-carousel-section__container {
-    max-width: 540px;
-  }
-
-  .home-faq-panel__container {
+  .site-footer__container,
+  .hero-section__container,
+  .feature-carousel-section__container,
+  .home-faq-panel__container,
+  .faq-page__container {
     max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
-  .hero-section__container {
-    max-width: 720px;
-  }
-
-  .feature-carousel-section__container {
-    max-width: 720px;
-  }
-
-  .home-faq-panel__container {
+  .site-footer__container,
+  .hero-section__container,
+  .feature-carousel-section__container,
+  .home-faq-panel__container,
+  .faq-page__container {
     max-width: 720px;
   }
 }
@@ -108,34 +90,27 @@ body.faq-page {
     padding-bottom: 40px;
   }
 
-  .hero-section__container {
-    max-width: 960px;
-  }
-
-  .feature-carousel-section__container {
-    max-width: 960px;
-  }
-
-  .home-faq-panel__container {
+  .site-footer__container,
+  .hero-section__container,
+  .feature-carousel-section__container,
+  .home-faq-panel__container,
+  .faq-page__container {
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  .hero-section__container {
-    max-width: 1000px;
-  }
-
-  .feature-carousel-section__container {
-    max-width: 1000px;
-  }
-
-  .home-faq-panel__container {
+  .site-footer__container,
+  .hero-section__container,
+  .feature-carousel-section__container,
+  .home-faq-panel__container,
+  .faq-page__container {
     max-width: 1000px;
   }
 }
 
 @media (max-width: 991.98px) {
+  /* Keep orange FAQ preview panel tucked under hero on mobile/tablet */
   section.home-faq-panel {
     margin-top: -5rem;
   }

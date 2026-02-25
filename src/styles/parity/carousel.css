@@ -1,5 +1,4 @@
-/* Parity layer: carousel (bootstrap + project-specific multi-item behavior) */
-/* Semantic parity aliases: carousel controls */
+/* Parity layer: carousel (layout, controls, and multi-item behavior) */
 .feature-carousel__control {
   position: absolute;
   top: 0;
@@ -63,7 +62,6 @@
   transition: transform 0.6s ease-in-out;
 }
 
-/* Project-specific parity from legacy .carousel-item overrides */
 .feature-carousel__item {
   transition: none;
 }
@@ -180,6 +178,5 @@
     transform: translate3d(100%, 0, 0);
     visibility: visible;
     display: block;
-    visibility: visible;
   }
 }
