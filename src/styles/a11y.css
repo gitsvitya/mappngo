@@ -28,3 +28,111 @@ a:focus-visible,
 .faq-content__section {
   /* Intentionally empty: class hooks for gradual migration away from utility classes. */
 }
+
+/* Semantic parity aliases: footer/social block */
+.site-footer__icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem; /* Matches legacy mx-4/mr-4 spacing pattern used for icons */
+}
+
+.site-footer__icon {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Semantic parity aliases: first-section / hero */
+.hero-section__logo,
+.hero-section__image {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero-section__logo--mobile {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-section__logo--desktop {
+  display: none;
+}
+
+.hero-section__headline,
+.hero-section__subtitle,
+.hero-section__locale-link {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 992px) {
+  .hero-section__logo--mobile {
+    display: none;
+  }
+
+  .hero-section__logo--desktop {
+    display: block;
+  }
+}
+
+/* Semantic parity aliases: FAQ page header/content */
+.faq-page__content {
+  padding-bottom: 0;
+}
+
+.faq-page__header {
+  display: flex;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.faq-page__logo {
+  max-width: 100%;
+  height: auto;
+}
+
+.faq-page__title {
+  margin-bottom: 0;
+}
+
+.faq-page__spacer {
+  padding-top: 0;
+}
+
+.faq-content__text--compact {
+  margin-bottom: 0;
+}
+
+/* Semantic parity aliases: home FAQ preview */
+.faq-preview__title--lead {
+  width: 100%;
+  max-width: 58.33333%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.faq-preview__cta {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Semantic parity aliases: carousel controls */
+.feature-carousel__control {
+  border: 0;
+  background: transparent;
+}
+
+.feature-carousel__image {
+  max-width: 100%;
+  height: auto;
+}
+
+.feature-carousel {
+  text-align: center;
+}
+
+.feature-carousel__track {
+  display: flex;
+  justify-content: space-between;
+}
