@@ -176,12 +176,31 @@ a:focus-visible,
 .site-footer__icons {
   display: flex;
   justify-content: center;
-  gap: 1.5rem; /* Matches legacy mx-4/mr-4 spacing pattern used for icons */
+  gap: 1.5rem;
 }
 
 .site-footer__icon {
   max-width: 100%;
   height: auto;
+}
+
+.site-footer__link {
+  display: inline-block;
+  padding: 0.25rem 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.site-footer__link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.site-footer__link:focus {
+  color: #fff;
+  text-decoration: none;
 }
 
 /* Hero primitives */

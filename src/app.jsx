@@ -145,10 +145,15 @@ function HomePage({ locale, scrolled, content }) {
 
       <section className="site-footer" id="social" aria-label="Social media">
         <div className="site-footer__container site-footer__icons">
-          <img src="/assets/images/icons/vk.svg" className="site-footer__icon" alt="VK" />
-          <img src="/assets/images/icons/instagram.svg" className="site-footer__icon" alt="Instagram" />
-          <img src="/assets/images/icons/fb.svg" className="site-footer__icon" alt="Facebook" />
-          <img src="/assets/images/icons/twi.svg" className="site-footer__icon" alt="Twitter" />
+          <a
+            href="https://svitya.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="site-footer__link"
+            aria-label="Open svitya.com"
+          >
+            → Svitya.com
+          </a>
         </div>
       </section>
     </main>
