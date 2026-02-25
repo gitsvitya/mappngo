@@ -4,7 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "sync:html": "node scripts/generate-html.mjs",
+    "predev": "npm run sync:html",
     "dev": "vite",
+    "prebuild": "npm run sync:html",
     "build": "vite build",
     "preview": "vite preview"
   },

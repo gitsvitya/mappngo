@@ -36,7 +36,7 @@
     if (!target) return
 
     if (window.location.pathname !== target) {
-      window.location.replace(target)
+      window.location.replace(target + window.location.search + window.location.hash)
     }
   } catch (e) {}
 })()

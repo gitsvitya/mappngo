@@ -42,6 +42,7 @@ function App({ locale, page }) {
       {pageNode}
       {!cookieAccepted ? (
         <CookieBanner
+          label={content.cookie.label}
           text={content.cookie.text}
           closeLabel={content.cookie.close}
           onClose={() => {
@@ -70,9 +71,9 @@ function ScrollTopLogo({ src, className }) {
   )
 }
 
-function CookieBanner({ text, closeLabel, onClose }) {
+function CookieBanner({ label, text, closeLabel, onClose }) {
   return (
-    <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+    <div className="cookie-banner" role="region" aria-live="polite" aria-label={label}>
       <div className="cookie-banner__inner">
         <p className="cookie-banner__text">{text}</p>
         <button type="button" className="cookie-banner__button" onClick={onClose}>
@@ -143,7 +144,7 @@ function HomePage({ locale, scrolled, content }) {
         />
       </section>
 
-      <section className="site-footer" id="social" aria-label="Social media">
+      <section className="site-footer" id="social" aria-label="Project link">
         <div className="site-footer__container site-footer__icons">
           <a
             href="https://svitya.com/"

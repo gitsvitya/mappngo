@@ -2,6 +2,7 @@ export const SITE_CONTENT = {
   ru: {
     locale: 'ru',
     cookie: {
+      label: 'Уведомление об использовании cookie',
       text: 'Для корректной работы сайта используются технические и аналитические cookie-файлы. Продолжая пользоваться сайтом, вы принимаете это.',
       close: 'Закрыть',
     },
@@ -19,7 +20,7 @@ export const SITE_CONTENT = {
         },
         {
           title: 'Кто работал над MappNgo?',
-          html: 'С UX/UI-дизайном iOS-приложения помогали <a href="https://www.agoradesign.ru/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Agoradesign</a>, техническая часть была выполнена <a href="https://dnt-lab.com/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Design and test lab</a>, работы по сайту выполнил <a href="https://vladmdgolam.now.sh/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Влад Мд Голам</a>. Идея, разработка концепции проекта, координация процессов, а также прочие мелочи — <a href="https://svitya.com/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Виктор Строков</a>.',
+          html: 'С UX/UI-дизайном iOS-приложения помогали <a href="https://www.agoradesign.ru/" target="_blank" rel="noreferrer">Agoradesign</a>, техническая часть была выполнена <a href="https://dnt-lab.com/" target="_blank" rel="noreferrer">Design and test lab</a>, работы по сайту выполнил <a href="https://vladmdgolam.now.sh/" target="_blank" rel="noreferrer">Влад Мд Голам</a>. Идея, разработка концепции проекта, координация процессов, а также прочие мелочи — <a href="https://svitya.com/" target="_blank" rel="noreferrer">Виктор Строков</a>.',
         },
         {
           title: 'Почему приложение больше недоступно в App Store?',
@@ -27,7 +28,7 @@ export const SITE_CONTENT = {
         },
         {
           title: 'Как можно с вами связаться?',
-          html: 'Написать <a href="https://t.me/vstrokov" class="text-white font-weight-bold" rel="noreferrer">сюда</a>.',
+          html: 'Написать <a href="https://t.me/vstrokov" rel="noreferrer">сюда</a>.',
         },
       ],
       slides: [
@@ -67,6 +68,7 @@ export const SITE_CONTENT = {
   en: {
     locale: 'en',
     cookie: {
+      label: 'Cookie notice',
       text: 'This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this.',
       close: 'Close',
     },
@@ -79,9 +81,9 @@ export const SITE_CONTENT = {
       faqCta: '→ Detailed FAQ',
       introFaq: [
         { title: 'What is MappNgo?', body: 'It was an iOS application with many unique, interesting, and hidden city walks created by MappNgo and its users. Route guides could be found by location or by included points. The project is now closed.' },
-        { title: 'Who worked on MappNgo?', html: '<a href="https://www.agoradesign.ru/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Agoradesign</a> helped with the app\'s UX/UI design, the technical part was implemented by <a href="https://dnt-lab.com/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Design and test lab</a>, and the website was developed by <a href="https://vladmdgolam.now.sh/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Vlad Md Golam</a>. The idea, project concept, process coordination, and many other things were done by <a href="https://svitya.com/" class="text-white font-weight-bold" target="_blank" rel="noreferrer">Victor Strokov</a>.' },
+        { title: 'Who worked on MappNgo?', html: '<a href="https://www.agoradesign.ru/" target="_blank" rel="noreferrer">Agoradesign</a> helped with the app\'s UX/UI design, the technical part was implemented by <a href="https://dnt-lab.com/" target="_blank" rel="noreferrer">Design and test lab</a>, and the website was developed by <a href="https://vladmdgolam.now.sh/" target="_blank" rel="noreferrer">Vlad Md Golam</a>. The idea, project concept, process coordination, and many other things were done by <a href="https://svitya.com/" target="_blank" rel="noreferrer">Victor Strokov</a>.' },
         { title: 'Why is MappNgo no longer available in the App Store?', body: 'The project was closed due to the COVID-19 pandemic, as walking tours and quarantine were incompatible.' },
-        { title: 'Is there any way to contact you?', html: 'Write <a href="https://t.me/vstrokov" class="text-white font-weight-bold" rel="noreferrer">here</a>.' },
+        { title: 'Is there any way to contact you?', html: 'Write <a href="https://t.me/vstrokov" rel="noreferrer">here</a>.' },
       ],
       slides: [
         { image: '/assets/images/top.png', title: 'Top route guides', text: 'The app featured lists of the best route guides for a week, a month, and all time.' },
