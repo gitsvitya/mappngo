@@ -49,6 +49,10 @@ body {
   background-color: #212529;
 }
 
+#root {
+  overflow-x: clip;
+}
+
 [tabindex='-1']:focus {
   outline: 0 !important;
 }
