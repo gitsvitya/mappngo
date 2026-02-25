@@ -4,7 +4,7 @@ export const SITE_CONTENT = {
     home: {
       title: 'Интересные пешие маршруты всегда рядом',
       subtitle: 'MappNgo — карманный помощник в подборе городских прогулок от настоящих знатоков своего города.',
-      switchLabel: 'En',
+      switchLabel: '→ En',
       switchHref: '/en/',
       faqHref: '/faq/',
       faqCta: '→ Подробный FAQ',
@@ -65,7 +65,7 @@ export const SITE_CONTENT = {
     home: {
       title: 'Interesting walking routes that are always nearby',
       subtitle: 'MappNgo — a pocket guide for the best city walks from its locals.',
-      switchLabel: 'Rus',
+      switchLabel: '→ Ru',
       switchHref: '/',
       faqHref: '/en/faq/',
       faqCta: '→ Detailed FAQ',
