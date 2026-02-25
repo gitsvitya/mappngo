@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import App from './app.jsx'
 import './styles/legacy-base.css'
 import './styles/legacy-grid.css'
-import './styles/legacy-utilities.css'
 import './styles/a11y.css'
 
 const rootEl = document.getElementById('root')
