@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { SITE_CONTENT } from './content.js'
 
+const LOCALE_PREF_KEY = 'mappngo.locale.pref.v1'
+
+function persistLocalePreference(locale) {
+  try {
+    if (locale === 'ru' || locale === 'en') {
+      window.localStorage.setItem(LOCALE_PREF_KEY, locale)
+      window.localStorage.setItem('mappngo.locale.visit.v1', '1')
+    }
+  } catch (e) {}
+}
+
 function App({ locale, page }) {
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0)
   const content = SITE_CONTENT[locale]
@@ -59,7 +70,11 @@ function HomePage({ locale, scrolled, content }) {
             <div className="hero-section__copy">
               <p className="hero-section__subtitle">{home.subtitle}</p>
               <p className="hero-section__locale-link">
-                <a href={home.switchHref} hrefLang={locale === 'ru' ? 'en' : 'ru'}>
+                <a
+                  href={home.switchHref}
+                  hrefLang={locale === 'ru' ? 'en' : 'ru'}
+                  onClick={() => persistLocalePreference(locale === 'ru' ? 'en' : 'ru')}
+                >
                   {home.switchLabel}
                 </a>
               </p>
