@@ -10,9 +10,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        faq: resolve(__dirname, 'faq.html'),
+        faq: resolve(__dirname, 'faq/index.html'),
         enMain: resolve(__dirname, 'en/index.html'),
-        enFaq: resolve(__dirname, 'en/faq.html'),
+        enFaq: resolve(__dirname, 'en/faq/index.html'),
       },
     },
   },

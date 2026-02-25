@@ -6,7 +6,7 @@ export const SITE_CONTENT = {
       subtitle: 'MappNgo — карманный помощник в подборе городских прогулок от настоящих знатоков своего города.',
       switchLabel: 'En',
       switchHref: '/en/',
-      faqHref: '/faq.html',
+      faqHref: '/faq/',
       faqCta: '→ Подробный FAQ',
       introFaq: [
         {
@@ -35,7 +35,7 @@ export const SITE_CONTENT = {
       ],
     },
     faq: {
-      homeHref: '/index.html',
+      homeHref: '/',
       sections: [
         { title: 'Что такое MappNgo?', body: 'Это iOS приложение, в котором пользователи могли проходить и добавлять пешие маршруты. Выбрать маршрут можно было по интересующим местам или по его расположению. На данный момент проект закрыт.' },
         { title: 'Как можно было начать пользоваться приложением?', body: 'Приложение было доступно только в App Store. Проходить и добавлять маршруты мог любой желающий, однако для большинства функций требовалась регистрация. Приложение было абсолютно бесплатно и не предполагало внутренних покупок.' },
@@ -66,8 +66,8 @@ export const SITE_CONTENT = {
       title: 'Interesting walking routes that are always nearby',
       subtitle: 'MappNgo — a pocket guide for the best city walks from its locals.',
       switchLabel: 'Rus',
-      switchHref: '/index.html',
-      faqHref: '/en/faq.html',
+      switchHref: '/',
+      faqHref: '/en/faq/',
       faqCta: '→ Detailed FAQ',
       introFaq: [
         { title: 'What is a MappNgo?', body: 'It was an iOS application with a lot of unique, interesting, and secret city walks, provided by MappNgo or its users. Route guides could be found by location or included points. The project is closed.' },
@@ -84,7 +84,7 @@ export const SITE_CONTENT = {
       ],
     },
     faq: {
-      homeHref: '/en/index.html',
+      homeHref: '/en/',
       sections: [
         { title: 'What is a MappNgo?', body: 'It was an iOS application with a lot of unique, interesting, and secret city walks, provided by MappNgo or its users. Route guides could be found by location or included points. The project is closed.' },
         { title: 'How the application worked?', body: 'The application was available only in the App Store. Every user could add and use route guides, but using all the features required registration. The application was free and did not offer any In-App purchases.' },
