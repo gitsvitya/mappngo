@@ -1,6 +1,10 @@
 export const SITE_CONTENT = {
   ru: {
     locale: 'ru',
+    cookie: {
+      text: 'Для корректной работы сайта задействованы технические и аналитические cookie-файлы. Продолжая работать с сайтом, Вы принимаете это.',
+      close: 'Закрыть',
+    },
     home: {
       title: 'Интересные пешие маршруты всегда рядом',
       subtitle: 'MappNgo — карманный помощник в подборе городских прогулок от настоящих знатоков своего города.',
@@ -62,6 +66,10 @@ export const SITE_CONTENT = {
   },
   en: {
     locale: 'en',
+    cookie: {
+      text: 'This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this.',
+      close: 'Close',
+    },
     home: {
       title: 'Interesting walking routes that are always nearby',
       subtitle: 'MappNgo — a pocket guide for the best city walks from its locals.',

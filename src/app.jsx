@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { SITE_CONTENT } from './content.js'
 
 const LOCALE_PREF_KEY = 'mappngo.locale.pref.v1'
+const COOKIE_CONSENT_KEY = 'mappngo.cookie.consent.v1'
 
 function persistLocalePreference(locale) {
   try {
@@ -14,6 +15,13 @@ function persistLocalePreference(locale) {
 
 function App({ locale, page }) {
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0)
+  const [cookieAccepted, setCookieAccepted] = useState(() => {
+    try {
+      return window.localStorage.getItem(COOKIE_CONSENT_KEY) === '1'
+    } catch (e) {
+      return false
+    }
+  })
   const content = SITE_CONTENT[locale]
 
   useEffect(() => {
@@ -22,10 +30,29 @@ function App({ locale, page }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  return page === 'faq' ? (
-    <FaqPage locale={locale} scrolled={scrolled} content={content} />
-  ) : (
-    <HomePage locale={locale} scrolled={scrolled} content={content} />
+  const pageNode =
+    page === 'faq' ? (
+      <FaqPage locale={locale} scrolled={scrolled} content={content} />
+    ) : (
+      <HomePage locale={locale} scrolled={scrolled} content={content} />
+    )
+
+  return (
+    <>
+      {pageNode}
+      {!cookieAccepted ? (
+        <CookieBanner
+          text={content.cookie.text}
+          closeLabel={content.cookie.close}
+          onClose={() => {
+            try {
+              window.localStorage.setItem(COOKIE_CONSENT_KEY, '1')
+            } catch (e) {}
+            setCookieAccepted(true)
+          }}
+        />
+      ) : null}
+    </>
   )
 }
 
@@ -40,6 +67,19 @@ function ScrollTopLogo({ src, className }) {
     >
       <img src={src} alt="MappnGo" className={className} />
     </a>
+  )
+}
+
+function CookieBanner({ text, closeLabel, onClose }) {
+  return (
+    <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+      <div className="cookie-banner__inner">
+        <p className="cookie-banner__text">{text}</p>
+        <button type="button" className="cookie-banner__button" onClick={onClose}>
+          {closeLabel}
+        </button>
+      </div>
+    </div>
   )
 }
 

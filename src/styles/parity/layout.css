@@ -41,6 +41,51 @@ body.faq-page {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
+.cookie-banner {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background: rgba(0, 0, 0, 0.9);
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.cookie-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.cookie-banner__text {
+  margin-bottom: 0;
+}
+
+.cookie-banner__button {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid #fb942a;
+  background: #fb942a;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.cookie-banner__button:hover,
+.cookie-banner__button:focus {
+  color: #fff;
+  text-decoration: none;
+  background: #fb942a;
+}
+
 .home-page {
   padding-bottom: 3rem;
 }
@@ -56,7 +101,8 @@ body.faq-page {
 .hero-section__container,
 .feature-carousel-section__container,
 .home-faq-panel__container,
-.faq-page__container {
+.faq-page__container,
+.cookie-banner__inner {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -69,7 +115,8 @@ body.faq-page {
   .hero-section__container,
   .feature-carousel-section__container,
   .home-faq-panel__container,
-  .faq-page__container {
+  .faq-page__container,
+  .cookie-banner__inner {
     max-width: 540px;
   }
 }
@@ -79,7 +126,8 @@ body.faq-page {
   .hero-section__container,
   .feature-carousel-section__container,
   .home-faq-panel__container,
-  .faq-page__container {
+  .faq-page__container,
+  .cookie-banner__inner {
     max-width: 720px;
   }
 }
@@ -94,7 +142,8 @@ body.faq-page {
   .hero-section__container,
   .feature-carousel-section__container,
   .home-faq-panel__container,
-  .faq-page__container {
+  .faq-page__container,
+  .cookie-banner__inner {
     max-width: 960px;
   }
 }
@@ -104,7 +153,8 @@ body.faq-page {
   .hero-section__container,
   .feature-carousel-section__container,
   .home-faq-panel__container,
-  .faq-page__container {
+  .faq-page__container,
+  .cookie-banner__inner {
     max-width: 1000px;
   }
 }
@@ -119,6 +169,15 @@ body.faq-page {
 @media (max-width: 767.98px) {
   section {
     min-width: 100%;
+  }
+
+  .cookie-banner__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cookie-banner__button {
+    width: 100%;
   }
 }
 
