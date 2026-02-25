@@ -1,7 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './app.jsx'
-import './site.css'
+import './styles/legacy-base.css'
+import './styles/legacy-grid.css'
+import './styles/legacy-utilities.css'
+import './styles/legacy-mappngo.css'
+import './styles/a11y.css'
 
 const rootEl = document.getElementById('root')
 const locale = rootEl?.dataset.locale === 'en' ? 'en' : 'ru'

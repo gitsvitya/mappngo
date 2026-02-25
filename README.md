@@ -23,5 +23,6 @@ npm run preview
 ```
 
 Notes:
-- Uses legacy CSS from the old project (`public/assets/main...css`) to preserve visual parity during migration.
-- Legacy jQuery/Bootstrap JS bundle is removed from runtime.
+- Visual parity is preserved by keeping the legacy stylesheet rules split into `src/styles/legacy-base.css`, `src/styles/legacy-grid.css`, `src/styles/legacy-utilities.css`, and `src/styles/legacy-mappngo.css` (same rule order).
+- `src/styles/a11y.css` contains only small non-visual/accessibility enhancements.
+- Static assets (images, favicon, fonts) are served from `public/assets`.

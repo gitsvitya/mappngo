@@ -41,24 +41,32 @@ function HomePage({ locale, scrolled, content }) {
         <ScrollTopLogo src="/assets/images/logo.svg" className="img-fluid mx-auto d-block logo" />
       </div>
 
-      <section className="container first-section overflow-hidden">
-        <img src="/assets/images/logo.svg" alt="MappnGo" className="img-fluid mx-auto d-block d-lg-none logo" />
-        <div className="align-items-lg-center flex-nowrap justify-content-between no-gutters row position-relative">
-          <div className="col-lg-7 col-sm-6">
-            <img src="/assets/images/logo.svg" alt="MappnGo" className="img-fluid d-none d-lg-block logo" />
+      <section className="container first-section hero-section overflow-hidden">
+        <img
+          src="/assets/images/logo.svg"
+          alt="MappnGo"
+          className="img-fluid mx-auto d-block d-lg-none logo hero-section__logo hero-section__logo--mobile"
+        />
+        <div className="align-items-lg-center flex-nowrap justify-content-between no-gutters row position-relative hero-section__layout">
+          <div className="col-lg-7 col-sm-6 hero-section__content">
+            <img
+              src="/assets/images/logo.svg"
+              alt="MappnGo"
+              className="img-fluid d-none d-lg-block logo hero-section__logo hero-section__logo--desktop"
+            />
             <h1 className="px-0">{home.title}</h1>
 
-            <div>
-              <p className="font-weight-medium px-0">{home.subtitle}</p>
-              <p className="font-weight-medium px-0">
+            <div className="hero-section__copy">
+              <p className="font-weight-medium px-0 hero-section__subtitle">{home.subtitle}</p>
+              <p className="font-weight-medium px-0 hero-section__locale-link">
                 <a href={home.switchHref} hrefLang={locale === 'ru' ? 'en' : 'ru'}>
                   {home.switchLabel}
                 </a>
               </p>
             </div>
           </div>
-          <div className="hero-image col-7 col-lg-6">
-            <img src="/assets/images/hero.png" alt="App preview" className="img-fluid" />
+          <div className="hero-image col-7 col-lg-6 hero-section__media">
+            <img src="/assets/images/hero.png" alt="App preview" className="img-fluid hero-section__image" />
           </div>
         </div>
       </section>
@@ -69,7 +77,7 @@ function HomePage({ locale, scrolled, content }) {
         </div>
       </section>
 
-      <section className="top-section container">
+      <section className="top-section container feature-carousel-section">
         <Carousel
           slides={home.slides}
           labels={
@@ -80,12 +88,16 @@ function HomePage({ locale, scrolled, content }) {
         />
       </section>
 
-      <section className="bg-primary" id="social" aria-label="Social media">
-        <div className="container d-flex justify-content-center">
-          <img src="/assets/images/icons/vk.svg" className="img-fluid" alt="VK" />
-          <img src="/assets/images/icons/instagram.svg" className="img-fluid mx-4" alt="Instagram" />
-          <img src="/assets/images/icons/fb.svg" className="img-fluid mr-4" alt="Facebook" />
-          <img src="/assets/images/icons/twi.svg" className="img-fluid" alt="Twitter" />
+      <section className="bg-primary site-footer" id="social" aria-label="Social media">
+        <div className="container d-flex justify-content-center site-footer__icons">
+          <img src="/assets/images/icons/vk.svg" className="img-fluid site-footer__icon" alt="VK" />
+          <img
+            src="/assets/images/icons/instagram.svg"
+            className="img-fluid mx-4 site-footer__icon"
+            alt="Instagram"
+          />
+          <img src="/assets/images/icons/fb.svg" className="img-fluid mr-4 site-footer__icon" alt="Facebook" />
+          <img src="/assets/images/icons/twi.svg" className="img-fluid site-footer__icon" alt="Twitter" />
         </div>
       </section>
     </main>
@@ -94,21 +106,21 @@ function HomePage({ locale, scrolled, content }) {
 
 function HomeFaqPreview({ sections, faqHref, cta }) {
   return (
-    <>
+    <div className="faq-preview">
       {sections.map((item, index) => (
-        <div key={item.title}>
-          <h2 className={index === 0 ? 'col-7 px-0' : ''}>{item.title}</h2>
+        <div key={item.title} className="faq-preview__item">
+          <h2 className={`${index === 0 ? 'col-7 px-0 ' : ''}faq-preview__title`.trim()}>{item.title}</h2>
           {item.html ? (
-            <p dangerouslySetInnerHTML={{ __html: item.html }} />
+            <p className="faq-preview__text" dangerouslySetInnerHTML={{ __html: item.html }} />
           ) : (
-            <p>{item.body}</p>
+            <p className="faq-preview__text">{item.body}</p>
           )}
         </div>
       ))}
-      <a href={faqHref} className="text-white font-weight-bold">
+      <a href={faqHref} className="text-white font-weight-bold faq-preview__cta">
         {cta}
       </a>
-    </>
+    </div>
   )
 }
 
@@ -122,7 +134,7 @@ function Carousel({ slides, labels }) {
   return (
     <div
       id="appCarousel"
-      className="carousel slide text-center"
+      className="carousel slide text-center feature-carousel"
       aria-roledescription="carousel"
       aria-label={labels.carousel}
       onKeyDown={(event) => {
@@ -131,17 +143,17 @@ function Carousel({ slides, labels }) {
       }}
       tabIndex={0}
     >
-      <div className="carousel-inner d-flex justify-content-between" aria-live="polite">
+      <div className="carousel-inner d-flex justify-content-between feature-carousel__track" aria-live="polite">
         {orderedSlides.map((slide, slideIndex) => (
           <div
-            className={`carousel-item${slideIndex === 0 ? ' active' : ''}`}
+            className={`carousel-item feature-carousel__item${slideIndex === 0 ? ' active' : ''}`}
             key={`${slide.title}-${slideIndex}`}
             aria-hidden={slideIndex === 0 ? 'false' : 'true'}
           >
-            <div>
-              <img src={slide.image} className="img-fluid" alt={slide.title} />
-              <h4>{slide.title}</h4>
-              <p>{slide.text}</p>
+            <div className="feature-carousel__card">
+              <img src={slide.image} className="img-fluid feature-carousel__image" alt={slide.title} />
+              <h4 className="feature-carousel__title">{slide.title}</h4>
+              <p className="feature-carousel__text">{slide.text}</p>
               <span className="sr-only">{`${labels.slide} ${((index + slideIndex) % slides.length) + 1} of ${slides.length}`}</span>
             </div>
           </div>
@@ -150,7 +162,7 @@ function Carousel({ slides, labels }) {
 
       <button
         type="button"
-        className="carousel-control-prev"
+        className="carousel-control-prev feature-carousel__control feature-carousel__control--prev"
         aria-label={labels.prev}
         onClick={prev}
         style={{ border: 0, background: 'transparent' }}
@@ -160,7 +172,7 @@ function Carousel({ slides, labels }) {
       </button>
       <button
         type="button"
-        className="carousel-control-next"
+        className="carousel-control-next feature-carousel__control feature-carousel__control--next"
         aria-label={labels.next}
         onClick={next}
         style={{ border: 0, background: 'transparent' }}
@@ -181,40 +193,42 @@ function FaqPage({ scrolled, content }) {
         <ScrollTopLogo src="/assets/images/logo_on_white.svg" className="img-fluid mx-auto d-block logo" />
       </div>
 
-      <section className="container pb-0" id="top">
-        <div className="align-items-center d-flex py-5">
-          <a href={faq.homeHref}>
-            <img src="/assets/images/logo_on_white.svg" alt="MappnGo" className="logo img-fluid" />
+      <section className="container pb-0 faq-page__content" id="top">
+        <div className="align-items-center d-flex py-5 faq-page__header">
+          <a href={faq.homeHref} className="faq-page__home-link">
+            <img src="/assets/images/logo_on_white.svg" alt="MappnGo" className="logo img-fluid faq-page__logo" />
           </a>
-          <h3 className="mb-0">&nbsp;· FAQ</h3>
+          <h3 className="mb-0 faq-page__title">&nbsp;· FAQ</h3>
         </div>
 
         <FaqSections sections={faq.sections} />
       </section>
-      <section className="container pt-0" />
+      <section className="container pt-0 faq-page__spacer" />
     </>
   )
 }
 
 function FaqSections({ sections }) {
   return sections.map((section) => (
-    <div key={section.title}>
-      <h2>{section.title}</h2>
+    <div key={section.title} className="faq-content__section">
+      <h2 className="faq-content__title">{section.title}</h2>
       {section.body ? (
         section.compactBody ? (
-          <p className="mb-0">
+          <p className="mb-0 faq-content__text faq-content__text--compact">
             {section.body}
             <br />
             {section.postBody}
           </p>
         ) : (
-          <p>{section.body}</p>
+          <p className="faq-content__text">{section.body}</p>
         )
       ) : null}
       {section.list ? (
-        <ul>
+        <ul className="faq-content__list">
           {section.list.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item} className="faq-content__list-item">
+              {item}
+            </li>
           ))}
         </ul>
       ) : null}
