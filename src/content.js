@@ -1,11 +1,15 @@
+// Централизованный контент сайта для RU/EN локалей: тексты, FAQ и карточки слайдов.
 export const SITE_CONTENT = {
+  // Русская локаль сайта.
   ru: {
     locale: 'ru',
+    // Тексты cookie-баннера.
     cookie: {
       label: 'Уведомление об использовании cookie',
       text: 'Для корректной работы сайта используются технические и аналитические cookie-файлы. Продолжая пользоваться сайтом, вы принимаете это.',
       close: 'Закрыть',
     },
+    // Контент главной страницы.
     home: {
       title: 'Интересные пешие маршруты всегда рядом',
       subtitle: 'MappNgo — карманный помощник в подборе городских прогулок от настоящих знатоков своего города.',
@@ -39,6 +43,7 @@ export const SITE_CONTENT = {
         { image: '/assets/images/hero.png', title: 'Навигация', text: 'Навигация осуществлялась с помощью Google Карт как по всему маршруту, так и к конкретной точке.' },
       ],
     },
+    // Контент отдельной FAQ-страницы.
     faq: {
       homeHref: '/',
       sections: [
@@ -65,13 +70,16 @@ export const SITE_CONTENT = {
       ],
     },
   },
+  // Английская локаль сайта.
   en: {
     locale: 'en',
+    // Тексты cookie-баннера.
     cookie: {
       label: 'Cookie notice',
       text: 'This website uses technical and analytical cookie files to function properly. By continuing to use the site, you agree to this.',
       close: 'Close',
     },
+    // Контент главной страницы.
     home: {
       title: 'Interesting walking routes that are always nearby',
       subtitle: 'MappNgo — a pocket guide for the best city walks from its locals.',
@@ -93,6 +101,7 @@ export const SITE_CONTENT = {
         { image: '/assets/images/hero.png', title: 'Navigation', text: 'Navigation in the app was based on the Google Maps API.' },
       ],
     },
+    // Контент отдельной FAQ-страницы.
     faq: {
       homeHref: '/en/',
       sections: [

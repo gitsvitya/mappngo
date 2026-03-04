@@ -1,35 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { SITE_CONTENT } from './content.js'
 
+// Ключ для сохранения выбранного языка в localStorage.
 const LOCALE_PREF_KEY = 'mappngo.locale.pref.v1'
+// Ключ для сохранения согласия на cookie-баннер.
 const COOKIE_CONSENT_KEY = 'mappngo.cookie.consent.v1'
 
+// Сохраняет язык пользователя и флаг первого зафиксированного визита.
 function persistLocalePreference(locale) {
   try {
     if (locale === 'ru' || locale === 'en') {
       window.localStorage.setItem(LOCALE_PREF_KEY, locale)
       window.localStorage.setItem('mappngo.locale.visit.v1', '1')
     }
-  } catch (e) {}
+  } catch {
+    // Игнорируем ошибки доступа к localStorage в приватном режиме/ограниченной среде.
+  }
 }
 
+// Корневой компонент, который выбирает нужную страницу и управляет общим UI-состоянием.
 function App({ locale, page }) {
+  // Флаг скролла нужен для анимации/появления фиксированного navbar.
   const [scrolled, setScrolled] = useState(() => window.scrollY > 0)
+  // Состояние согласия на cookie считывается один раз при инициализации.
   const [cookieAccepted, setCookieAccepted] = useState(() => {
     try {
       return window.localStorage.getItem(COOKIE_CONSENT_KEY) === '1'
-    } catch (e) {
+    } catch {
       return false
     }
   })
-  const content = SITE_CONTENT[locale]
 
+  // Получаем словарь переводов и контент по активной локали.
+  const content = SITE_CONTENT[locale] ?? SITE_CONTENT.ru
+
+  // Подписка на scroll обновляет состояние шапки; очистка убирает слушатель при размонтировании.
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Выбираем целевой шаблон страницы в зависимости от data-page.
   const pageNode =
     page === 'faq' ? (
       <FaqPage locale={locale} scrolled={scrolled} content={content} />
@@ -48,7 +60,9 @@ function App({ locale, page }) {
           onClose={() => {
             try {
               window.localStorage.setItem(COOKIE_CONSENT_KEY, '1')
-            } catch (e) {}
+            } catch {
+              // Игнорируем ошибки доступа к localStorage, чтобы не ломать UX.
+            }
             setCookieAccepted(true)
           }}
         />
@@ -57,6 +71,7 @@ function App({ locale, page }) {
   )
 }
 
+// Кликабельный логотип, плавно возвращающий пользователя к началу страницы.
 function ScrollTopLogo({ src, className }) {
   return (
     <a
@@ -71,6 +86,7 @@ function ScrollTopLogo({ src, className }) {
   )
 }
 
+// Баннер информирует о cookie и позволяет пользователю закрыть уведомление.
 function CookieBanner({ label, text, closeLabel, onClose }) {
   return (
     <div className="cookie-banner" role="region" aria-live="polite" aria-label={label}>
@@ -84,6 +100,7 @@ function CookieBanner({ label, text, closeLabel, onClose }) {
   )
 }
 
+// Главная страница: hero, короткий FAQ, карусель возможностей и футер.
 function HomePage({ locale, scrolled, content }) {
   const { home } = content
 
@@ -138,8 +155,18 @@ function HomePage({ locale, scrolled, content }) {
           slides={home.slides}
           labels={
             locale === 'ru'
-              ? { carousel: 'Функции приложения', prev: 'Предыдущий слайд', next: 'Следующий слайд', slide: 'Слайд' }
-              : { carousel: 'App features', prev: 'Previous slide', next: 'Next slide', slide: 'Slide' }
+              ? {
+                  carousel: 'Функции приложения',
+                  prev: 'Предыдущий слайд',
+                  next: 'Следующий слайд',
+                  slide: 'Слайд',
+                }
+              : {
+                  carousel: 'App features',
+                  prev: 'Previous slide',
+                  next: 'Next slide',
+                  slide: 'Slide',
+                }
           }
         />
       </section>
@@ -161,6 +188,7 @@ function HomePage({ locale, scrolled, content }) {
   )
 }
 
+// Карточки короткого FAQ на главной странице и ссылка на полный FAQ.
 function HomeFaqPreview({ sections, faqHref, cta }) {
   return (
     <div className="faq-preview">
@@ -181,11 +209,19 @@ function HomeFaqPreview({ sections, faqHref, cta }) {
   )
 }
 
+// Карусель возможностей приложения с клавиатурным и кнопочным управлением.
 function Carousel({ slides, labels }) {
   const [index, setIndex] = useState(0)
-  const orderedSlides = slides.map((_, offset) => slides[(index + offset) % slides.length])
 
+  // Переупорядочиваем массив так, чтобы активный элемент всегда был первым.
+  const orderedSlides = useMemo(
+    () => slides.map((_, offset) => slides[(index + offset) % slides.length]),
+    [index, slides],
+  )
+
+  // Переход к предыдущему слайду с циклическим замыканием.
   const prev = () => setIndex((current) => (current - 1 + slides.length) % slides.length)
+  // Переход к следующему слайду с циклическим замыканием.
   const next = () => setIndex((current) => (current + 1) % slides.length)
 
   return (
@@ -195,8 +231,14 @@ function Carousel({ slides, labels }) {
       aria-roledescription="carousel"
       aria-label={labels.carousel}
       onKeyDown={(event) => {
-        if (event.key === 'ArrowLeft') prev()
-        if (event.key === 'ArrowRight') next()
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault()
+          prev()
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault()
+          next()
+        }
       }}
       tabIndex={0}
     >
@@ -224,7 +266,7 @@ function Carousel({ slides, labels }) {
         onClick={prev}
       >
         <img src="/assets/images/icons/arrowL.svg" aria-hidden="true" alt="" />
-        <span className="visually-hidden">Previous</span>
+        <span className="visually-hidden">{labels.prev}</span>
       </button>
       <button
         type="button"
@@ -233,13 +275,14 @@ function Carousel({ slides, labels }) {
         onClick={next}
       >
         <img src="/assets/images/icons/arrowR.svg" aria-hidden="true" alt="" />
-        <span className="visually-hidden">Next</span>
+        <span className="visually-hidden">{labels.next}</span>
       </button>
     </div>
   )
 }
 
-function FaqPage({ scrolled, content }) {
+// Страница FAQ с фиксированной шапкой и списком секций.
+function FaqPage({ locale, scrolled, content }) {
   const { faq } = content
 
   return (
@@ -250,7 +293,7 @@ function FaqPage({ scrolled, content }) {
 
       <section className="faq-page__container faq-page__content" id="top">
         <div className="faq-page__header">
-          <a href={faq.homeHref} className="faq-page__home-link">
+          <a href={faq.homeHref} hrefLang={locale === 'ru' ? 'ru' : 'en'} className="faq-page__home-link">
             <img src="/assets/images/logo_on_white.svg" alt="MappnGo" className="faq-page__logo" />
           </a>
           <h3 className="faq-page__title">&nbsp;· FAQ</h3>
@@ -258,11 +301,13 @@ function FaqPage({ scrolled, content }) {
 
         <FaqSections sections={faq.sections} />
       </section>
+
       <section className="faq-page__container faq-page__spacer" />
     </>
   )
 }
 
+// Рендерит повторяющиеся FAQ-блоки с текстом и списками.
 function FaqSections({ sections }) {
   return sections.map((section) => (
     <div key={section.title} className="faq-content__section">

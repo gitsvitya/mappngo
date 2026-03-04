@@ -1,10 +1,20 @@
-/* Parity layer: base reset, typography, and accessibility helpers */
+/* Глобальные токены цвета и размеров для единого визуального ритма. */
+:root {
+  --color-bg-dark: #212529;
+  --color-accent: #fb942a;
+  --color-accent-hover: #d56e04;
+  --color-text-light: #ffffff;
+  --container-padding: 15px;
+}
+
+/* Базовая модель коробки для предсказуемой верстки. */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Нормализует базовые параметры html для мобильных браузеров. */
 html {
   font-family: sans-serif;
   line-height: 1.15;
@@ -12,6 +22,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/* Явно задает display для семантических секций в старых движках. */
 article,
 aside,
 figcaption,
@@ -25,6 +36,7 @@ section {
   display: block;
 }
 
+/* Базовая типографика и фон сайта. */
 body {
   margin: 0;
   font-family:
@@ -44,24 +56,22 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #fff;
+  color: var(--color-text-light);
   text-align: left;
-  background-color: #212529;
+  background-color: var(--color-bg-dark);
 }
 
+/* Не дает горизонтальному скроллу появляться из-за анимаций и сдвигов. */
 #root {
   overflow-x: clip;
 }
 
+/* Удаляет outline для программного фокуса у элементов с tabindex=-1. */
 [tabindex='-1']:focus {
   outline: 0 !important;
 }
 
-.feature-carousel__control {
-  cursor: pointer;
-}
-
-/* Typography scale used by site headings */
+/* Задает единый ритм для заголовков. */
 h1,
 h2,
 h3,
@@ -74,6 +84,7 @@ h6 {
   line-height: 1.2;
 }
 
+/* Типографическая шкала заголовков. */
 h1 {
   font-size: 2.5rem;
 }
@@ -98,6 +109,7 @@ h6 {
   font-size: 1rem;
 }
 
+/* Базовые интервалы абзацев и списков. */
 p {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -110,6 +122,7 @@ dl {
   margin-bottom: 1rem;
 }
 
+/* Вложенные списки не увеличивают вертикальный отступ. */
 ol ol,
 ul ul,
 ol ul,
@@ -117,31 +130,37 @@ ul ol {
   margin-bottom: 0;
 }
 
+/* Оформляет ссылки в фирменном акцентном цвете. */
 a {
-  color: #fb942a;
+  color: var(--color-accent);
   text-decoration: none;
   background-color: transparent;
 }
 
+/* Поведение ссылок при наведении. */
 a:hover {
-  color: #d56e04;
+  color: var(--color-accent-hover);
   text-decoration: underline;
 }
 
+/* Нормализует отображение изображений. */
 img {
   vertical-align: middle;
   border-style: none;
 }
 
+/* Снимает дефолтное скругление кнопок в Safari/iOS. */
 button {
   border-radius: 0;
 }
 
+/* Сохраняет видимый фокус для клавиатурной навигации. */
 button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
 }
 
+/* Наследует типографику для form-элементов. */
 input,
 button,
 select,
@@ -153,6 +172,7 @@ textarea {
   line-height: inherit;
 }
 
+/* Служебный класс для скрытого, но доступного для скринридеров текста. */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -165,65 +185,130 @@ textarea {
   border: 0;
 }
 
+/* Единый focus ring для интерактивных элементов интерфейса. */
 .feature-carousel__control:focus-visible,
 a:focus-visible,
 .feature-carousel:focus-visible {
-  outline: 2px solid #fb942a;
+  outline: 2px solid var(--color-accent);
   outline-offset: 4px;
 }
 
+/* Скрытые в карусели элементы не должны перехватывать события мыши. */
 .feature-carousel[aria-roledescription='carousel'] .feature-carousel__item[aria-hidden='true'] {
   pointer-events: none;
 }
 
-/* Footer / social */
+/* Контент главного экрана отступает от cookie-баннера. */
+.home-page {
+  padding-bottom: 3rem;
+}
+
+/* Блок с внешней ссылкой в футере центрируется по оси. */
 .site-footer__icons {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
 }
 
-.site-footer__icon {
-  max-width: 100%;
-  height: auto;
-}
-
+/* Ссылка в футере визуально усиливается для контраста на оранжевом фоне. */
 .site-footer__link {
   display: inline-block;
   padding: 0.25rem 0;
-  color: #fff;
+  color: var(--color-text-light);
   font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.1;
 }
 
+/* Hover-состояние ссылки в футере сохраняет белый цвет. */
 .site-footer__link:hover {
-  color: #fff;
+  color: var(--color-text-light);
   text-decoration: underline;
 }
 
+/* Focus-состояние ссылки в футере не меняет цвет. */
 .site-footer__link:focus {
-  color: #fff;
+  color: var(--color-text-light);
   text-decoration: none;
 }
 
-/* Hero primitives */
+/* Базовые ограничения размеров для логотипа и иллюстрации hero. */
 .hero-section__logo,
 .hero-section__image {
   max-width: 100%;
   height: auto;
 }
 
+/* На мобильных показываем только мобильный логотип. */
 .hero-section__logo--mobile {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* На мобильных скрываем десктопный вариант логотипа. */
 .hero-section__logo--desktop {
   display: none;
 }
 
+/* Базовая структура и типографика превью FAQ на главной. */
+.faq-preview {
+  color: var(--color-text-light);
+}
+
+/* Элементы превью FAQ разделяются вертикальным ритмом. */
+.faq-preview__item + .faq-preview__item {
+  margin-top: 1.75rem;
+}
+
+/* Первый заголовок FAQ делаем шире и визуально доминирующим на десктопе. */
+.faq-preview__title--lead {
+  width: 100%;
+  max-width: 58.33333%;
+}
+
+/* Ссылки внутри FAQ-превью держим белыми для контраста. */
+.faq-preview a,
+.faq-preview__cta {
+  color: var(--color-text-light);
+  font-weight: 700;
+}
+
+/* Служебный отступ для компактного параграфа в FAQ-странице. */
+.faq-content__text--compact {
+  margin-bottom: 0;
+}
+
+/* Структура заголовка FAQ-страницы. */
+.faq-page__header {
+  display: flex;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Логотип в FAQ-странице масштабируется пропорционально. */
+.faq-page__logo {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Заголовок FAQ-страницы без лишнего нижнего отступа. */
+.faq-page__title {
+  margin-bottom: 0;
+}
+
+/* Секции FAQ получают аккуратные вертикальные интервалы. */
+.faq-content__section + .faq-content__section {
+  margin-top: 1.75rem;
+}
+
+/* Список в FAQ слегка сдвинут, чтобы читаемее отделять пункты. */
+.faq-content__list {
+  padding-left: 1.25rem;
+}
+
+/* На десктопе переключаем отображение логотипов hero и масштаб FAQ-лого. */
 @media (min-width: 992px) {
   .hero-section__logo--mobile {
     display: none;
@@ -236,51 +321,4 @@ a:focus-visible,
   .faq-page__logo {
     width: 284px;
   }
-}
-
-/* FAQ page */
-.faq-page__content {
-  padding-bottom: 0;
-}
-
-.faq-page__header {
-  display: flex;
-  align-items: center;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-.faq-page__logo {
-  max-width: 100%;
-  height: auto;
-}
-
-.faq-page__title {
-  margin-bottom: 0;
-}
-
-.faq-page__spacer {
-  padding-top: 0;
-}
-
-.faq-content__text--compact {
-  margin-bottom: 0;
-}
-
-/* Home FAQ preview */
-.faq-preview__title--lead {
-  width: 100%;
-  max-width: 58.33333%;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.faq-preview__cta {
-  color: #fff;
-  font-weight: 700;
-}
-
-.faq-preview a {
-  color: #fff;
-  font-weight: 700;
 }

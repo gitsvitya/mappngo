@@ -1,14 +1,15 @@
-/* Parity layer: layout containers, navbar, page wrappers */
+/* Базовые вертикальные отступы для секций сайта. */
 section {
   padding-top: 25px;
   padding-bottom: 25px;
 }
 
+/* Цвет фона на FAQ-странице. */
 body.faq-page {
   background-color: #fb942a;
 }
 
-/* Navbar */
+/* Логотип в фиксированном navbar центрируется по горизонтали. */
 .site-navbar__logo {
   display: block;
   max-width: 100%;
@@ -17,33 +18,40 @@ body.faq-page {
   margin-right: auto;
 }
 
+/* Фиксированная шапка с плавным появлением после скролла. */
 .site-navbar {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1030;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  z-index: 1030;
-  transition: all 0.35s;
   opacity: 0;
   transform: translateY(-63px);
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease,
+    background-color 0.35s ease;
   background: rgba(0, 0, 0, 0.9);
   padding-top: 13px;
   padding-bottom: 13px;
 }
 
+/* При скролле шапка становится видимой. */
 .site-navbar--scrolled {
   transform: none;
   opacity: 1;
 }
 
+/* В FAQ шапка окрашивается в цвет страницы и получает легкую тень. */
 .site-navbar--faq {
-  background-color: #fb942a !important;
+  background-color: #fb942a;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
+/* Фиксированный cookie-баннер внизу экрана. */
 .cookie-banner {
   position: fixed;
   right: 0;
@@ -55,22 +63,20 @@ body.faq-page {
   padding-bottom: 13px;
 }
 
+/* Внутренний контейнер баннера выравнивает текст и кнопку. */
 .cookie-banner__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
+/* Убирает лишний отступ у текста баннера. */
 .cookie-banner__text {
   margin-bottom: 0;
 }
 
+/* Акцентная кнопка закрытия cookie-баннера. */
 .cookie-banner__button {
   flex: 0 0 auto;
   padding: 0.35rem 0.85rem;
@@ -82,6 +88,7 @@ body.faq-page {
   cursor: pointer;
 }
 
+/* Hover и focus кнопки сохраняют контраст и читаемость. */
 .cookie-banner__button:hover,
 .cookie-banner__button:focus {
   color: #fff;
@@ -89,17 +96,13 @@ body.faq-page {
   background: #fb942a;
 }
 
-.home-page {
-  padding-bottom: 3rem;
-}
-
-/* Page surfaces */
+/* Оранжевые панели для FAQ-превью и футера на главной странице. */
 .home-faq-panel,
 .site-footer {
-  background-color: #fb942a !important;
+  background-color: #fb942a;
 }
 
-/* Shared fixed-width containers */
+/* Единая система контейнеров для всех основных секций. */
 .site-footer__container,
 .hero-section__container,
 .feature-carousel-section__container,
@@ -107,12 +110,13 @@ body.faq-page {
 .faq-page__container,
 .cookie-banner__inner {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: var(--container-padding);
+  padding-left: var(--container-padding);
   margin-right: auto;
   margin-left: auto;
 }
 
+/* Ширина контейнеров на маленьких экранах. */
 @media (min-width: 576px) {
   .site-footer__container,
   .hero-section__container,
@@ -124,6 +128,7 @@ body.faq-page {
   }
 }
 
+/* Ширина контейнеров на планшетах. */
 @media (min-width: 768px) {
   .site-footer__container,
   .hero-section__container,
@@ -135,6 +140,7 @@ body.faq-page {
   }
 }
 
+/* Ширина контейнеров и увеличенные отступы на десктопе. */
 @media (min-width: 992px) {
   section {
     padding-top: 40px;
@@ -151,6 +157,7 @@ body.faq-page {
   }
 }
 
+/* Финальная ширина контейнеров на широких мониторах. */
 @media (min-width: 1200px) {
   .site-footer__container,
   .hero-section__container,
@@ -162,9 +169,9 @@ body.faq-page {
   }
 }
 
+/* Мобильная версия фиксированной шапки без transform для стабильности в браузерах. */
 @media (max-width: 991.98px) {
   .site-navbar {
-    /* Mobile browsers can glitch fixed+transform; keep visibility logic via opacity only */
     top: 0;
     left: 0;
     right: auto;
@@ -172,9 +179,6 @@ body.faq-page {
     max-width: 100vw;
     overflow-x: clip;
     transform: none;
-    transition:
-      opacity 0.35s ease,
-      background-color 0.35s ease;
   }
 
   @supports (width: 100dvw) {
@@ -185,16 +189,23 @@ body.faq-page {
   }
 
   .site-navbar--scrolled {
-    transform: none;
     opacity: 1;
   }
 
-  /* Keep orange FAQ preview panel tucked under hero on mobile/tablet */
+  /* На мобильных поднимаем FAQ-панель ближе к hero для плотной композиции. */
   section.home-faq-panel {
     margin-top: -5rem;
   }
 }
 
+/* На очень узких экранах убирает агрессивное перекрытие FAQ-панели с hero-блоком. */
+@media (max-width: 359.98px) {
+  section.home-faq-panel {
+    margin-top: 0;
+  }
+}
+
+/* Мобильные правки cookie-баннера и секций. */
 @media (max-width: 767.98px) {
   section {
     min-width: 100%;
@@ -210,6 +221,7 @@ body.faq-page {
   }
 }
 
+/* Растягивает контейнер FAQ-панели на промежуточных планшетных ширинах. */
 @media (min-width: 576px) and (max-width: 767.98px) {
   section.home-faq-panel .home-faq-panel__container {
     max-width: 100%;

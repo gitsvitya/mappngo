@@ -1,3 +1,4 @@
+/* Подключает базовые стили, карусель, layout и hero-блок в фиксированном порядке каскада. */
 @import './parity/foundation.css';
 @import './parity/carousel.css';
 @import './parity/layout.css';

@@ -1,4 +1,51 @@
-/* Parity layer: carousel (layout, controls, and multi-item behavior) */
+/* Каркас карусели с местом под абсолютные управляющие стрелки. */
+.feature-carousel {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Контейнер слайдов выравнивает карточки и обрезает лишние элементы. */
+.feature-carousel__track {
+  display: flex;
+  width: 100%;
+  gap: 1.25rem;
+  overflow: hidden;
+}
+
+/* Слайды по умолчанию скрыты, на мобильном показывается только активный. */
+.feature-carousel__item {
+  display: none;
+  width: 100%;
+  flex: 0 0 100%;
+}
+
+/* Активный слайд становится видимым. */
+.feature-carousel__item.active {
+  display: block;
+}
+
+/* Карточка слайда центрирует содержимое и задает предсказуемые отступы. */
+.feature-carousel__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+}
+
+/* Изображение внутри слайда не выходит за границы карточки. */
+.feature-carousel__image {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+}
+
+/* Описание внутри карточки без лишнего отступа снизу. */
+.feature-carousel .feature-carousel__item p {
+  margin-bottom: 0;
+}
+
+/* Унифицированные кнопки-стрелки поверх области карусели. */
 .feature-carousel__control {
   position: absolute;
   top: 0;
@@ -10,12 +57,14 @@
   width: 15%;
   color: #fff;
   text-align: center;
+  cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.15s ease;
   border: 0;
   background: transparent;
 }
 
+/* При hover/focus кнопка визуально усиливается. */
 .feature-carousel__control:hover,
 .feature-carousel__control:focus {
   color: #fff;
@@ -24,159 +73,32 @@
   opacity: 0.9;
 }
 
+/* Позиционирование левой стрелки. */
 .feature-carousel__control--prev {
   left: 0;
 }
 
+/* Позиционирование правой стрелки. */
 .feature-carousel__control--next {
   right: 0;
 }
 
-.feature-carousel {
-  position: relative;
-  margin-bottom: 20px;
-  text-align: center;
+/* На десктопе одновременно показываем 3 первых слайда из упорядоченного массива. */
+@media (min-width: 992px) {
+  .feature-carousel__item {
+    display: block;
+    flex: 0 0 calc((100% - 2.5rem) / 3);
+    width: calc((100% - 2.5rem) / 3);
+  }
+
+  .feature-carousel__item:nth-child(n + 4) {
+    display: none;
+  }
 }
 
-.feature-carousel__track {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-between;
-}
-
-.feature-carousel__track::after {
-  display: block;
-  clear: both;
-  content: '';
-}
-
-.feature-carousel__item {
-  position: relative;
-  display: none;
-  float: left;
-  width: 100%;
-  margin-right: -100%;
-  backface-visibility: hidden;
-  transition: transform 0.6s ease-in-out;
-}
-
-.feature-carousel__item {
-  transition: none;
-}
-
-.feature-carousel__item img {
-  max-width: 250px;
-}
-
-.feature-carousel__item.active,
-.feature-carousel__item.carousel-item-next,
-.feature-carousel__item.carousel-item-prev {
-  display: block;
-}
-
-.feature-carousel__item.carousel-item-next:not(.carousel-item-left),
-.feature-carousel__item.active.carousel-item-right {
-  transform: translateX(100%);
-}
-
-.feature-carousel__item.carousel-item-prev:not(.carousel-item-right),
-.feature-carousel__item.active.carousel-item-left {
-  transform: translateX(-100%);
-}
-
+/* В режиме reduced motion отключаем плавную анимацию прозрачности кнопок. */
 @media (prefers-reduced-motion: reduce) {
   .feature-carousel__control {
     transition: none;
-  }
-
-  .feature-carousel__item {
-    transition: none;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .feature-carousel__item {
-    flex-basis: 100%;
-    flex-shrink: 0;
-  }
-}
-
-.feature-carousel__image {
-  max-width: 100%;
-  height: auto;
-}
-
-.feature-carousel .feature-carousel__item p {
-  margin-bottom: 0;
-}
-
-@media (min-width: 992px) {
-  .feature-carousel__track .active,
-  .feature-carousel__track .active + .feature-carousel__item,
-  .feature-carousel__track .active + .feature-carousel__item + .feature-carousel__item {
-    display: block;
-  }
-
-  .feature-carousel__track .feature-carousel__item.active:not(.carousel-item-right):not(.carousel-item-left),
-  .feature-carousel__track
-    .feature-carousel__item.active:not(.carousel-item-right):not(.carousel-item-left)
-    + .feature-carousel__item,
-  .feature-carousel__track
-    .feature-carousel__item.active:not(.carousel-item-right):not(.carousel-item-left)
-    + .feature-carousel__item
-    + .feature-carousel__item,
-  .feature-carousel__track
-    .feature-carousel__item.active:not(.carousel-item-right):not(.carousel-item-left)
-    + .feature-carousel__item
-    + .feature-carousel__item
-    + .feature-carousel__item {
-    transition: none;
-    margin-right: initial;
-  }
-
-  .feature-carousel__track .feature-carousel__item-next,
-  .feature-carousel__track .feature-carousel__item-prev {
-    position: relative;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .active.carousel-item-left + .feature-carousel__item.carousel-item-next.carousel-item-left,
-  .feature-carousel__item.carousel-item-next.carousel-item-left + .feature-carousel__item,
-  .feature-carousel__item.carousel-item-next.carousel-item-left + .feature-carousel__item + .feature-carousel__item,
-  .feature-carousel__item.carousel-item-next.carousel-item-left + .feature-carousel__item + .feature-carousel__item + .feature-carousel__item,
-  .feature-carousel__item.carousel-item-next.carousel-item-left
-    + .feature-carousel__item
-    + .feature-carousel__item
-    + .feature-carousel__item
-    + .feature-carousel__item {
-    position: relative;
-    transform: translate3d(-100%, 0, 0);
-    visibility: visible;
-  }
-
-  .feature-carousel__track .feature-carousel__item-prev.carousel-item-right {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    display: block;
-    visibility: hidden;
-  }
-
-  .active.carousel-item-right + .feature-carousel__item.carousel-item-prev.carousel-item-right,
-  .feature-carousel__item.carousel-item-prev.carousel-item-right + .feature-carousel__item,
-  .feature-carousel__item.carousel-item-prev.carousel-item-right + .feature-carousel__item + .feature-carousel__item,
-  .feature-carousel__item.carousel-item-prev.carousel-item-right + .feature-carousel__item + .feature-carousel__item + .feature-carousel__item,
-  .feature-carousel__item.carousel-item-prev.carousel-item-right
-    + .feature-carousel__item
-    + .feature-carousel__item
-    + .feature-carousel__item
-    + .feature-carousel__item {
-    position: relative;
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-    display: block;
   }
 }
