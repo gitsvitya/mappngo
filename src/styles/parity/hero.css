@@ -1,8 +1,9 @@
-/* Parity layer: hero layout and media positioning */
+/* Задает базовый отступ под логотипом hero-блока. */
 .hero-section__logo {
   margin-bottom: 10px;
 }
 
+/* Формирует основной каркас hero-секции с двумя колонками. */
 .hero-section__layout {
   position: relative;
   display: flex;
@@ -12,43 +13,51 @@
   margin-left: 0;
 }
 
+/* Сбрасывает внутренние отступы у возможных колонок, если они будут добавлены в будущем. */
 .hero-section__layout > [class*='col-'] {
   padding-right: 0;
   padding-left: 0;
 }
 
+/* На базовом брейкпоинте медиа-колонка занимает расширенную долю ширины. */
 .hero-section__media {
   flex: 0 0 58.33333%;
   max-width: 58.33333%;
 }
 
+/* Поднимает заголовок над соседними элементами для корректного визуального слоя. */
 .hero-section__headline {
   z-index: 10;
   position: relative;
 }
 
+/* Ограничивает фактическую ширину превью-изображения приложения. */
 .hero-section .hero-section__media {
   max-width: 250px;
 }
 
+/* На планшетах и телефонах слегка сдвигает превью влево для совпадения с исходным макетом. */
 @media (max-width: 767.98px) {
   .hero-section .hero-section__media {
     margin-left: -0.5rem;
   }
 }
 
+/* На очень узких экранах усиливает сдвиг, чтобы не ломать композицию hero. */
 @media screen and (max-width: 320px) {
   .hero-section .hero-section__media {
     margin-left: -2.5rem;
   }
 }
 
+/* На маленьких телефонах добавляет вертикальный отступ перед превью. */
 @media (max-width: 575.98px) {
   .hero-section .hero-section__media {
     margin-top: 7rem;
   }
 }
 
+/* Начиная с малого планшета, текстовая колонка фиксируется на половину контейнера. */
 @media (min-width: 576px) {
   .hero-section__content {
     flex: 0 0 50%;
@@ -56,6 +65,7 @@
   }
 }
 
+/* На десктопе увеличивает логотип и перестраивает пропорции колонок. */
 @media (min-width: 992px) {
   .hero-section__logo {
     width: 284px;
@@ -76,13 +86,17 @@
   }
 }
 
+/* Усиливает читаемость подзаголовка за счет среднего полужирного начертания. */
 .hero-section__subtitle {
   font-weight: 500;
 }
 
+/* Подчеркивает переключатель языков повышенным весом шрифта. */
 .hero-section__locale-link {
-font-weight: 700;
+  font-weight: 700;
 }
+
+/* Выравнивает текстовые элементы hero по общей сетке контейнера. */
 .hero-section__headline,
 .hero-section__subtitle,
 .hero-section__locale-link {

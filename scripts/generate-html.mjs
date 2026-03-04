@@ -1,10 +1,14 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 
+// Базовый URL проекта, от которого формируются canonical/og-ссылки.
 const SITE_URL = 'https://mappngo.com'
+// Абсолютный путь к OG-изображению для соцсетей.
 const OG_IMAGE = `${SITE_URL}/assets/images/OG.png`
+// Абсолютный путь к логотипу для schema.org.
 const LOGO_IMAGE = `${SITE_URL}/assets/images/logo.svg`
 
+// Общие мета-поля, используемые на всех HTML-страницах.
 const COMMON_HEAD = {
   charset: 'UTF-8',
   viewport: 'width=device-width, initial-scale=1.0',
@@ -13,6 +17,7 @@ const COMMON_HEAD = {
   fontHref: '/assets/fonts/inter.css',
 }
 
+// Декларативный список страниц, из которого генерируются RU/EN home+FAQ.
 const pages = [
   {
     outFile: 'index.html',
@@ -132,10 +137,12 @@ const pages = [
   },
 ]
 
+// Превращает относительный путь в абсолютный URL сайта.
 function fullUrl(path) {
   return `${SITE_URL}${path}`
 }
 
+// Форматирует JSON-LD с отступами под HTML-разметку скрипта.
 function stringifyJsonLd(data) {
   return JSON.stringify(data, null, 2)
     .split('\n')
@@ -143,8 +150,10 @@ function stringifyJsonLd(data) {
     .join('\n')
 }
 
+// Генерирует полный HTML-документ из конфигурации конкретной страницы.
 function renderHtml(page) {
   const bodyClassAttr = page.bodyClass ? ` class="${page.bodyClass}"` : ''
+
   return `<!doctype html>
 <html lang="${page.lang}">
   <head>
@@ -202,6 +211,7 @@ ${stringifyJsonLd(page.jsonLd)}
 `
 }
 
+// Проходит по декларации страниц, создает директории и записывает итоговые HTML-файлы.
 async function main() {
   for (const page of pages) {
     const outPath = resolve(process.cwd(), page.outFile)
@@ -210,6 +220,7 @@ async function main() {
   }
 }
 
+// Логирует ошибку генерации и завершает процесс с ненулевым кодом.
 main().catch((error) => {
   console.error(error)
   process.exit(1)
